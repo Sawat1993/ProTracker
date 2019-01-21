@@ -24,7 +24,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   editProject(projectId) {
-    this.router.navigate(['/project-detail/' + projectId]);
+    this.router.navigate(['/projects/' + projectId]);
   }
 
   viewProject(projectId, name) {

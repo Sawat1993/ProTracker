@@ -3,11 +3,11 @@ import { AsyncHttpService } from "../provider/async-http.service";
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-invoices',
-  templateUrl: './invoices.component.html',
-  styleUrls: ['./invoices.component.css']
+  selector: 'app-users',
+  templateUrl: './users.component.html',
+  styleUrls: ['./users.component.css']
 })
-export class InvoicesComponent implements OnInit {
+export class UsersComponent implements OnInit {
 
   projects: any;
   @Output() emitter: EventEmitter<any> = new EventEmitter();
@@ -21,10 +21,10 @@ export class InvoicesComponent implements OnInit {
   }
 
   editPO(id) {
-    this.emitter.emit({ event: 'IN-CREATE', id: id });
+    this.emitter.emit({ event: 'USER-CREATE', id: id });
   }
 
   createPO() {
-    this.emitter.emit({ event: 'IN-CREATE', id: '' });
+    this.emitter.emit({ event: 'USER-CREATE', id: '' });
   }
 }

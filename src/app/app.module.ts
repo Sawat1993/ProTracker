@@ -25,10 +25,15 @@ import { ProjectsComponent } from './projects/projects.component';
 import { PurchaseOrdersComponent } from './purchase-orders/purchase-orders.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { LoginComponent } from './login/login.component';
+import { ProjectCodeComponent } from './project-code/project-code.component';
+import { ProjectCodesComponent } from './project-codes/project-codes.component';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './user/user.component';
+import { ApprovalComponent } from './approval/approval.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'project-detail/:id', component: MasterProjectComponent },
+  { path: 'projects/:id', component: MasterProjectComponent },
   { path: 'project/:id', component: ProjectComponent },
   { path: 'purchase-order/:id', component: PurchaseOrderComponent },
   { path: 'purchase-order', component: PurchaseOrderComponent },
@@ -55,7 +60,12 @@ const routes: Routes = [
     ProjectsComponent,
     PurchaseOrdersComponent,
     InvoicesComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectCodeComponent,
+    ProjectCodesComponent,
+    UsersComponent,
+    UserComponent,
+    ApprovalComponent
   ],
   imports: [
     BrowserModule,

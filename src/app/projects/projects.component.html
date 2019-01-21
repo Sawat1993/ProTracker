@@ -15,7 +15,6 @@
     <table class="table table-striped shadow-sm">
       <thead>
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">NAME</th>
           <th scope="col">STATUS</th>
           <th scope="col">MANAGER ID</th>
@@ -27,7 +26,6 @@
       </thead>
       <tbody>
         <tr *ngFor="let project of projects">
-          <th>{{project.id}}</th>
           <td>{{project.name}}</td>
           <td>{{project.status}}</td>
           <td>{{project.managerID}}</td>

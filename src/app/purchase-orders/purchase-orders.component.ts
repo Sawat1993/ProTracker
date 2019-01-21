@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncHttpService } from "../provider/async-http.service";
 import { Router } from '@angular/router';
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PurchaseOrdersComponent implements OnInit {
   projects: any;
+  @Output() emitter: EventEmitter<any> = new EventEmitter();
 
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
@@ -25,11 +26,11 @@ export class PurchaseOrdersComponent implements OnInit {
 
 
   editPO(id) {
-    this.router.navigate(['/purchase-order/' + id]);
+    this.emitter.emit({ event: 'PO-CREATE', id: id });
   }
 
   createPO() {
-    this.router.navigate(['/purchase-order']);
+    this.emitter.emit({ event: 'PO-CREATE', id: '' });
   }
 
 }

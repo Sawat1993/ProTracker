@@ -11,15 +11,20 @@ import { Router } from '@angular/router';
 export class MasterProjectComponent implements OnInit {
 
   projects: any;
-  title : string;
-  selected = 'PO';
+  selected = 'PD';
+  selectionID = '';
+  projectDetail: any;
 
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      console.log(params);
-      this.title = params.name;
+
+      this.activatedRoute.params.subscribe(params => {
+        if (params.id) this.service.get('/assets/data/project.json').subscribe(data => {
+          this.projectDetail = data;
+        })
+      })
     })
   }
 
@@ -29,6 +34,19 @@ export class MasterProjectComponent implements OnInit {
 
   selectIN() {
     this.selected = 'IN'
+  }
+
+  selectPD() {
+    this.selected = 'PD'
+  }
+
+  selectPC() {
+    this.selected = 'PC'
+  }
+
+  filter(e){
+    this.selected = e.event;
+    this.selectionID = e.id;
   }
 
 }

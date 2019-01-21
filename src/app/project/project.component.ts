@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncHttpService } from "../provider/async-http.service";
 
@@ -9,8 +9,8 @@ import { AsyncHttpService } from "../provider/async-http.service";
 })
 export class ProjectComponent implements OnInit {
 
-  title = 'Create Project';
-  projectDetail: any = {
+  @Input() title: any = 'Create Project';
+  @Input() projectDetail: any = {
     name: '',
     managerID: '',
     startDate: '',

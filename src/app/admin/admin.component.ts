@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { AsyncHttpService } from "../provider/async-http.service";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  constructor() { }
+  projects: any;
+  selected = 'USER';
+  selectionID = '';
+
+  constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
   }
 
+  selectUser() {
+    this.selected = 'USER'
+  }
+
+  selectApproval() {
+    this.selected = 'APPROVAL'
+  }
+  
+  filter(e) {
+    this.selected = e.event;
+    this.selectionID = e.id;
+  }
 }

@@ -1,18 +1,17 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AsyncHttpService } from "../provider/async-http.service";
-import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-invoices',
-  templateUrl: './invoices.component.html',
-  styleUrls: ['./invoices.component.css']
+  selector: 'app-project-codes',
+  templateUrl: './project-codes.component.html',
+  styleUrls: ['./project-codes.component.css']
 })
-export class InvoicesComponent implements OnInit {
+export class ProjectCodesComponent implements OnInit {
 
   projects: any;
   @Output() emitter: EventEmitter<any> = new EventEmitter();
 
-  constructor(private service: AsyncHttpService, private router: Router) { }
+  constructor(private service: AsyncHttpService) { }
 
   ngOnInit() {
     this.service.get('/assets/data/projects.json').subscribe(data => {
@@ -21,10 +20,11 @@ export class InvoicesComponent implements OnInit {
   }
 
   editPO(id) {
-    this.emitter.emit({ event: 'IN-CREATE', id: id });
+    this.emitter.emit({ event: 'PC-CREATE', id: id });
   }
 
   createPO() {
-    this.emitter.emit({ event: 'IN-CREATE', id: '' });
+    this.emitter.emit({ event: 'PC-CREATE', id: '' });
   }
+
 }
