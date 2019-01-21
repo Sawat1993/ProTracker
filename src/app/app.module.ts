@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 //Services
 import { LoaderService } from './provider/loader';
@@ -18,14 +19,26 @@ import { LoaderComponent } from './loader/loader.component';
 //Routing
 import { RouterModule, Routes } from '@angular/router';
 import { MasterProjectComponent } from './master-project/master-project.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { PurchaseOrderComponent } from './purchase-order/purchase-order.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { PurchaseOrdersComponent } from './purchase-orders/purchase-orders.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'projects', component: ProjectComponent },
+  { path: 'projects', component: ProjectsComponent },
   { path: 'project-detail/:id', component: MasterProjectComponent },
-  { path: 'project-detail', component: MasterProjectComponent },
+  { path: 'project/:id', component: ProjectComponent },
+  { path: 'purchase-order/:id', component: PurchaseOrderComponent },
+  { path: 'purchase-order', component: PurchaseOrderComponent },
+  { path: 'invoice', component: InvoiceComponent },
+  { path: 'invoice/:id', component: InvoiceComponent },
+  { path: 'project', component: ProjectComponent },
   { path: 'admin', component: AdminComponent },
-  { path: 'index.html', redirectTo: '/home', pathMatch: 'full' },
-  { path: '', redirectTo: '/home', pathMatch: 'full' }
+  { path: 'login', component: LoginComponent },
+  { path: 'index.html', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -36,12 +49,19 @@ const routes: Routes = [
     HomeComponent,
     ProjectComponent,
     AdminComponent,
-    MasterProjectComponent
+    MasterProjectComponent,
+    InvoiceComponent,
+    PurchaseOrderComponent,
+    ProjectsComponent,
+    PurchaseOrdersComponent,
+    InvoicesComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [LoaderService, NotificationService, AsyncHttpService],
   bootstrap: [AppComponent]

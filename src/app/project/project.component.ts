@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AsyncHttpService } from "../provider/async-http.service";
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -9,22 +9,24 @@ import { Router } from '@angular/router';
 })
 export class ProjectComponent implements OnInit {
 
-  projects: any;
+  title = 'Create Project';
+  projectDetail: any = {
+    name: '',
+    managerID: '',
+    startDate: '',
+    endDate: '',
+    projectType: '',
+    description:''
+  };
 
-  constructor(private service: AsyncHttpService, private router: Router) { }
+  constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute) { }
+
 
   ngOnInit() {
-    this.service.get('/assets/data/project.json').subscribe(data => {
-      this.projects = data.projects;
-    })
   }
 
-  editProject(projectId){
-    this.router.navigate(['/project-detail/' + projectId]);
-  }
-
-  createProject(){
-    this.router.navigate(['/admin']);
+  save(){
+    console.log(this.projectDetail)
   }
 
 }

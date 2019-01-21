@@ -1,0 +1,57 @@
+<div class="row col-12 m-0 p-0 mt-2 justify-content-center">
+  
+  <div class="col-11 m-0 mt-2 mb-2 p-0">
+    <div class="row col-12 m-0 p-0  justify-content-between">
+      <div>
+        <span style="font-weight: bold">Search:</span>
+        <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Project Code" type="text" [(ngModel)]="code" (keydown)="keyDown($event)"></span>
+        <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Project Name" type="text" [(ngModel)]="name" (keydown)="keyDown($event)"></span>
+      </div>
+      <div><button type="button" class="btn btn-success btn-sm" (click)="createProject()">Create Project</button></div>
+    </div>
+  </div>
+
+  <div class="col-11 m-0 p-0" style="font-size: 13px;">
+    <table class="table table-striped shadow-sm">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">NAME</th>
+          <th scope="col">STATUS</th>
+          <th scope="col">MANAGER ID</th>
+          <th scope="col">START DATE</th>
+          <th scope="col">END DATE</th>
+          <th scope="col">AMOUNT BILLED</th>
+          <th scope="col">EDIT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <th>{{project.id}}</th>
+          <td>{{project.name}}</td>
+          <td>{{project.status}}</td>
+          <td>{{project.managerID}}</td>
+          <td>{{project.startDate}}</td>
+          <td>{{project.endDate}}</td>
+          <td>$ {{project.amountBilled}}</td>
+          <td><span (click)="editProject(project.id)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
+          <!--<td><span (click)="viewProject(project.id,project.name)" class="fa fa-arrow-right pl-2 pr-2 hand"></span></td>-->
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <ul class="pagination pagination-sm">
+    <li class="page-item">
+      <a class="page-link" (click)="firstClick()">
+        <<</a>
+    </li>
+    <li class="page-item">
+      <a class="page-link" (click)="previousClick()">
+        <</a>
+    </li>
+    <li class="page-item"><a class="page-link" style="color: black" (click)="getProjects()">{{page + ' of ' + count}}</a></li>
+    <li class="page-item"><a class="page-link" (click)="nextClick()">></a></li>
+    <li class="page-item"><a class="page-link" (click)="lastClick()">>></a></li>
+  </ul>
+
+</div>

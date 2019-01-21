@@ -1,5 +1,5 @@
 .searchbox{
-    min-width: 120px;
+    width: 120px;
     height: 20px!important;
     border: none;
 }
@@ -9,6 +9,6 @@
     box-shadow: none !important;
 }
 
-.lable{
-    font-weight: 500;
+.hand {
+    cursor: pointer;
 }
