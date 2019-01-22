@@ -11,12 +11,12 @@
   </div>
 
   <div class="col-md-9 col-xl-10">
-    <app-project *ngIf="selected=='PD'" [title]="'Edit Project'" [projectDetail]="projectDetail"></app-project>
-    <app-purchase-orders *ngIf="selected=='PO'" (emitter)="filter($event)"></app-purchase-orders>
+    <app-project *ngIf="selected=='PD'" [title]="'Edit Project'" [projectID]="projectID"></app-project>
+    <app-purchase-orders *ngIf="selected=='PO'" [projectID]="projectID" (emitter)="filter($event)"></app-purchase-orders>
     <app-purchase-order  *ngIf="selected=='PO-CREATE'"></app-purchase-order>
-    <app-invoices *ngIf="selected=='IN'"  (emitter)="filter($event)"></app-invoices>
+    <app-invoices *ngIf="selected=='IN'"  [projectID]="projectID" (emitter)="filter($event)"></app-invoices>
     <app-invoice *ngIf="selected=='IN-CREATE'"></app-invoice>
-    <app-project-codes *ngIf="selected=='PC'"  (emitter)="filter($event)"></app-project-codes>
+    <app-project-codes *ngIf="selected=='PC'"  [projectID]="projectID" (emitter)="filter($event)"></app-project-codes>
     <app-project-code *ngIf="selected=='PC-CREATE'"></app-project-code>
   </div>
 

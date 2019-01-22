@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AsyncHttpService } from "../provider/async-http.service";
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-master-project',
@@ -13,18 +14,13 @@ export class MasterProjectComponent implements OnInit {
   projects: any;
   selected = 'PD';
   selectionID = '';
-  projectDetail: any;
+  projectID = '';
 
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-
-      this.activatedRoute.params.subscribe(params => {
-        if (params.id) this.service.get('/assets/data/project.json').subscribe(data => {
-          this.projectDetail = data;
-        })
-      })
+      if (params.id) this.projectID = params.id;
     })
   }
 
@@ -44,7 +40,7 @@ export class MasterProjectComponent implements OnInit {
     this.selected = 'PC'
   }
 
-  filter(e){
+  filter(e) {
     this.selected = e.event;
     this.selectionID = e.id;
   }

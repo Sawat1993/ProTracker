@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { AsyncHttpService } from "../provider/async-http.service";
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class InvoicesComponent implements OnInit {
 
   projects: any;
+  @Input() projectID: any;
   @Output() emitter: EventEmitter<any> = new EventEmitter();
 
   constructor(private service: AsyncHttpService, private router: Router) { }

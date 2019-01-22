@@ -10,23 +10,28 @@ import { AsyncHttpService } from "../provider/async-http.service";
 export class ProjectComponent implements OnInit {
 
   @Input() title: any = 'Create Project';
-  @Input() projectDetail: any = {
+  @Input() projectID: any;
+  projectDetail: any = {
     name: '',
     managerID: '',
     startDate: '',
     endDate: '',
     projectType: '',
-    description:''
+    description: ''
   };
 
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
+    this.service.get('/assets/data/project.json').subscribe(data => {
+      this.projectDetail = data;
+    })
   }
 
-  save(){
-    console.log(this.projectDetail)
+  save() {
+    console.log(this.projectID)
   }
 
 }
+

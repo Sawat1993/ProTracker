@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, Input, EventEmitter } from '@angular/core';
 import { AsyncHttpService } from "../provider/async-http.service";
 
 @Component({
@@ -9,6 +9,7 @@ import { AsyncHttpService } from "../provider/async-http.service";
 export class ProjectCodesComponent implements OnInit {
 
   projects: any;
+  @Input() projectID: any;
   @Output() emitter: EventEmitter<any> = new EventEmitter();
 
   constructor(private service: AsyncHttpService) { }
