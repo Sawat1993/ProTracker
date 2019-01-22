@@ -25,33 +25,48 @@
         <button type="button" class="btn btn-success mb-2 btn-sm" (click)="addRow()"><span class="fa fa-plus mr-2"></span>Add More</button>
       </div>
       <div class=" row col-12 m-0  p-0" style="font-size: 13px;">
-        <table class="table table-striped shadow-sm">
-          <thead>
-            <tr>
-              <th scope="col">UNIT</th>
-              <th scope="col">QTY</th>
-              <th scope="col">AMOUNT</th>
-              <th scope="col">EDIT</th>
-              <th scope="col">DELETE</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let po of pos">
-              <td *ngIf="!po.isEditable">{{po.unit}}</td>
-              <td *ngIf="po.isEditable"> <input type="text" required class="form-control" (blur)="setValue(po)" [(ngModel)]="po.unit" placeholder="Unit *"
-                  name="unit" /></td>
 
-              <td *ngIf="!po.isEditable">{{po.qty}}</td>
-              <td *ngIf="po.isEditable"> <input type="text" required class="form-control" (blur)="setValue(po)" [(ngModel)]="po.qty" placeholder="Quantity *"
-                  name="qty" /></td>
+         <table class="table table-striped shadow-sm">
+            <thead>
+              <tr>
+                <th scope="col">LINE NUMBER</th>
+                <th scope="col">LINE DESC</th>
+                <th scope="col">RATE</th>
+                <th scope="col">QTY</th>
+                <th scope="col">AMOUNT</th>
+                <th scope="col">EDIT</th>
+                <th scope="col">DELETE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let po of pos">
+                <td *ngIf="!po.isEditable">{{po.lineNumber}}</td>
+                <td *ngIf="po.isEditable"> <input type="text" required class="form-control" (blur)="setValue(po)" [(ngModel)]="po.lineNumber" placeholder="Line Number *"
+                    name="lineNumber" /></td>
+
+                <td *ngIf="!po.isEditable">{{po.lineDesc}}</td>
+                <td *ngIf="po.isEditable"> <input type="text" required class="form-control" (blur)="setValue(po)" [(ngModel)]="po.lineDesc" placeholder="Line Desc *"
+                    name="lineDesc" /></td>
+
+                <td *ngIf="!po.isEditable">{{po.rate}}</td>
+                <td *ngIf="po.isEditable"> <input type="text" required class="form-control" (blur)="setValue(po)" [(ngModel)]="po.rate" placeholder="Rate *"
+                    name="rate" /></td>
 
 
-              <td>{{po.unit * po.qty}}</td>
-              <td><span (click)="editPO(po)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
-              <td><span (click)="deletePo(title, po.metaIndex)" class="fa fa-trash pl-2 pr-2 hand fa-lg" style="color: red;"></span></td>
-            </tr>
-          </tbody>
-        </table>
+                <td *ngIf="!po.isEditable">{{po.qty}}</td>
+                <td *ngIf="po.isEditable"> <input type="text" required class="form-control" (blur)="setValue(po)" [(ngModel)]="po.qty" placeholder="Quantity *"
+                    name="qty" /></td>
+
+                <td>{{po.rate * po.qty}}</td>
+
+
+
+
+                <td><span (click)="editPO(po)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
+                <td><span (click)="deletePo(title, po.metaIndex)" class="fa fa-trash pl-2 pr-2 hand fa-lg" style="color: red;"></span></td>
+              </tr>
+            </tbody>
+          </table>
       </div>
 
       <div class=" row col-12 mt-1 justify-content-center">

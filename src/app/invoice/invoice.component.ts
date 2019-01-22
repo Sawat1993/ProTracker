@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AsyncHttpService } from "src/app/provider/async-http.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -9,15 +9,40 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class InvoiceComponent implements OnInit {
 
+  @Input() inID: any;
   title = 'Create Invoice';
   invoices = []
   invoice: any = {
     id: '',
-    poId: '',
-    quantity: '',
-    description: '',
-    month: ''
+    projectCode: '',
+    monthYear: '',
+    poNumber: '',
+    amount: '',
+    startDate: '',
+    endDate: ''
   };
+
+  poNumbers = [
+    "2104",
+    "2105",
+    "2106",
+    "2107",
+    "2108",
+    "2109",
+    "21010",
+    "21011"
+  ]
+
+  projectCodes = [
+    "B2104",
+    "C2104",
+    "D2104",
+    "E2104",
+    "F2104",
+    "G2104",
+    "G2104",
+    "I2104"
+  ]
 
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute) { }
 
@@ -32,10 +57,12 @@ export class InvoiceComponent implements OnInit {
       } else {
         const referer = {
           id: '',
-          poId: '',
-          quantity: '',
-          description: '',
-          month: '',
+          projectCode: '',
+          monthYear: '',
+          poNumber: '',
+          amount: '',
+          startDate: '',
+          endDate: '',
           metaIndex: 1,
           isEditable: true
         };
@@ -47,13 +74,15 @@ export class InvoiceComponent implements OnInit {
   addRow() {
     console.log(this.invoices);
     if (this.invoices.length > 0) {
-      if (this.invoices[this.invoices.length - 1].quantity != '' && this.invoices[this.invoices.length - 1].month != '') {
+      if (this.invoices[this.invoices.length - 1].amount != '' && this.invoices[this.invoices.length - 1].monthYear != '') {
         const referer = {
           id: '',
-          poId: '',
-          quantity: '',
-          description: '',
-          month: '',
+          projectCode: '',
+          monthYear: '',
+          poNumber: '',
+          amount: '',
+          startDate: '',
+          endDate: '',
           metaIndex: '',
           isEditable: true
         };
@@ -64,10 +93,13 @@ export class InvoiceComponent implements OnInit {
     } else {
       const referer = {
         id: '',
-        poId: '',
-        quantity: '',
-        description: '',
-        month: '',
+        projectCode: '',
+
+        monthYear: '',
+        poNumber: '',
+        amount: '',
+        startDate: '',
+        endDate: '',
         metaIndex: 1,
         isEditable: true
       };
@@ -76,7 +108,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   save() {
-     const sendingObject = {
+    const sendingObject = {
       invoiceId: this.invoice.id,
       invoiceArray: this.invoices
     }
@@ -88,11 +120,11 @@ export class InvoiceComponent implements OnInit {
   }
 
   // setValue(ref) {
-   
-  //   ref.poAmt = ref.unit * ref.qty;
+
+  //   ref.poNumberAmt = ref.unit * ref.qty;
   // }
 
-  deleteInvoice(type, metaIndex?: any,) {
+  deleteInvoice(type, metaIndex?: any, ) {
     if (type === 'Create Invoice') {
       this.invoices.forEach((val, index) => {
         if (val.metaIndex == metaIndex) {

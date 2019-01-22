@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AsyncHttpService } from "src/app/provider/async-http.service";
 import { ActivatedRoute } from "@angular/router";
 
@@ -10,72 +10,75 @@ import { ActivatedRoute } from "@angular/router";
 export class PurchaseOrderComponent implements OnInit {
 
   title = 'Create PO';
+  @Input() poID: any;
   pos = [];
   po: any = {
-    id: '',
     qty: '',
-    unit: '',
+    lineNumber: '',
+    lineDesc: '',
+    rate: '',
     totalAmount: '',
     poAmt: ''
   };
-  
+
 
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      if (params.id) {
+      if (this.poID) {
         this.service.get('/assets/data/project.json').subscribe(data => {
           this.title = "Edit PO"
           this.po = data;
         });
       } else {
         const referer = {
-          id: '',
           qty: '',
-          unit: '',
+          lineNumber: '',
+          lineDesc: '',
+          rate: '',
           poAmt: '',
           metaIndex: 1,
           isEditable: true
         };
         this.pos.push(referer);
       }
-    })
   }
 
   addRow() {
     console.log(this.pos);
     if (this.pos.length > 0) {
-      if (this.pos[this.pos.length - 1].qty != '' && this.pos[this.pos.length - 1].unit != '') {
+      if (this.pos[this.pos.length - 1].qty != '' && this.pos[this.pos.length - 1].lineNumber != '') {
         const referer = {
-          id: '',
           qty: '',
-          unit: '',
+          lineNumber: '',
+          lineDesc: '',
+          rate: '',
           poAmt: '',
           metaIndex: '',
           isEditable: true
         };
         this.pos[this.pos.length - 1].isEditable = false;
         this.pos.push(referer)
-        this.pos[this.pos.length -1].metaIndex = this.pos.length;
+        this.pos[this.pos.length - 1].metaIndex = this.pos.length;
       }
     } else {
       const referer = {
-          id: '',
-          qty: '',
-          unit: '',
-          poAmt: '',
-          metaIndex: 1,
-          isEditable: true
-        };
-        this.pos.push(referer);
+        qty: '',
+        lineNumber: '',
+        lineDesc: '',
+        rate: '',
+        poAmt: '',
+        metaIndex: 1,
+        isEditable: true
+      };
+      this.pos.push(referer);
     }
   }
 
   save() {
     const sendingObject = {
-      poId: this.po.id,
+      poNumber: this.po.number,
       poArray: this.pos
     }
     console.log(sendingObject);
@@ -86,11 +89,11 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   setValue(ref) {
-   
-    ref.poAmt = ref.unit * ref.qty;
+
+    ref.poAmt = ref.rate * ref.qty;
   }
 
-  deletePo(type, metaIndex?: any,) {
+  deletePo(type, metaIndex?: any, ) {
     if (type === 'Create PO') {
       this.pos.forEach((val, index) => {
         if (val.metaIndex == metaIndex) {

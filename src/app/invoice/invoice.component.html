@@ -4,13 +4,32 @@
     <div class="row mt-3">
       <div class="col-md-6">
         <div class="form-group">
-          <span class="lable">Line Item Number :   </span>
-          <input type="text" required class="form-control" placeholder="Line Item Number *" name="lineItemNumber" [(ngModel)]="invoice.id"
-          />
+          <span class="lable">Project Code :   </span>
+          <select class="form-control"  name="projectCode" [(ngModel)]="invoice.projectCode">
+            <option *ngFor="let code of projectCodes">{{code}}</option>
+          </select>
+          <!--<input type="text" required class="form-control" placeholder="Project Code *" name="projectCode" [(ngModel)]="invoice.projectCode"
+          />-->
         </div>
         <div class="form-group">
-          <span class="lable">PO ID :   </span>
-          <input type="text" class="form-control" placeholder="Po ID *" name="poId" [(ngModel)]="invoice.poId" />
+          <span class="lable">PO Number :   </span>
+          <select class="form-control"  name="poNumber" [(ngModel)]="invoice.poId">
+            <option *ngFor="let number of poNumbers">{{number}}</option>
+          </select>
+          <!--<input type="text" class="form-control" placeholder="Po ID *" name="poId" [(ngModel)]="invoice.poId" />-->
+        </div>
+        <div class="form-group">
+          <span class="lable">Select Month and Year :   </span>
+          <!--<div class="btn-group">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Select Month
+            </button>
+            <div class="dropdown-menu">
+              
+            </div>
+          </div>-->
+          <input type="month" class="form-control" placeholder="Month and Year *" name="monthYear" [(ngModel)]="invoice.monthYear"
+          />
         </div>
       </div>
       <div class="col-md-6">
@@ -18,6 +37,51 @@
           <span class="lable">Invoice Description :   </span>
           <textarea class="form-control" placeholder="Invoice Description *" style="width: 100%; height: 150px;" name="ivDesc" [(ngModel)]="invoice.description"></textarea>
         </div>
+      </div>
+
+      <div class=" row col-12 m-0 p-0 justify-content-end">
+        <button type="button" class="btn btn-success mb-2 btn-sm" (click)="addRow()"><span class="fa fa-plus mr-2"></span>Add More</button>
+      </div>
+
+      <div class=" row col-12 m-0  p-0" style="font-size: 13px;">
+        <table class="table table-striped shadow-sm">
+          <thead>
+            <tr>
+              <th scope="col">LINE NUMBER</th>
+              <th scope="col">LINE DESC</th>
+              <th scope="col">RATE</th>
+              <th scope="col">QTY</th>
+              <th scope="col">REM QUANTITY</th>
+              <th scope="col">AMOUNT QTY</th>
+
+              <th scope="col">EDIT</th>
+              <th scope="col">DELETE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let each of invoices">
+              <td>{{each.lineNumber}}</td>
+
+              <td>{{each.lineDesc}}</td>
+
+              <td>{{each.rate}}</td>
+
+
+              <td>{{each.qty}}</td>
+
+
+              <td>{{each.remQuantity}}</td>
+
+              <td *ngIf="!each.isEditable">{{each.amountQty}}</td>
+              <td *ngIf="each.isEditable"> <input type="text" required class="form-control" [(ngModel)]="each.amountQty" placeholder="Amount QTY *"
+                  name="amountQty" /></td>
+
+
+              <td><span (click)="editInvoice(each)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
+              <td><span (click)="deleteInvoice(title, each.metaIndex)" class="fa fa-trash pl-2 pr-2 hand fa-lg" style="color: red;"></span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div class="row col-12 m-1 justify-content-center">
         <button type="button" class="btn btn-success" (click)="save()">{{title}}</button>

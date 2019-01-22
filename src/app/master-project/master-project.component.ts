@@ -15,7 +15,6 @@ export class MasterProjectComponent implements OnInit {
   selected = 'PD';
   selectionID = '';
   projectID = '';
-
   constructor(private service: AsyncHttpService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -29,15 +28,18 @@ export class MasterProjectComponent implements OnInit {
   }
 
   selectIN() {
-    this.selected = 'IN'
+    this.selected = 'IN';
+    this.selectionID = '';
   }
 
   selectPD() {
-    this.selected = 'PD'
+    this.selected = 'PD';
+    this.selectionID = '';
   }
 
   selectPC() {
-    this.selected = 'PC'
+    this.selected = 'PC';
+    this.selectionID = '';
   }
 
   filter(e) {
