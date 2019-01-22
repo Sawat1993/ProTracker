@@ -5,24 +5,22 @@
         <table class="table table-striped shadow-sm">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">NAME</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">START DATE</th>
-              <th scope="col">END DATE</th>
-              <th scope="col">AMOUNT</th>
-              <th scope="col">EDIT</th>
+              <th scope="col">First NAME</th>
+              <th scope="col">LAST NAME</th>
+              <th scope="col">EMAIL</th>
+              <th scope="col">ROLE</th>
+              <th scope="col">APPROVE</th>
+              <th scope="col">REJECT</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let project of projects">
-              <th>{{project.id}}</th>
               <td>{{project.name}}</td>
               <td>{{project.status}}</td>
               <td>{{project.startDate}}</td>
               <td>{{project.endDate}}</td>
-              <td>$ {{project.amountBilled}}</td>
-              <td><span (click)="editPO(project.id)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
+              <td><span (click)="editPO(project.id)" style="color: green;" class="fa fa-check fa-lg pl-2 pr-2 hand"></span></td>
+              <td><span (click)="editPO(project.id)" style="color: red;" class="fa fa-times fa-lg pl-2 pr-2 hand"></span></td>
             </tr>
           </tbody>
         </table>

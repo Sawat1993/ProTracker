@@ -2,7 +2,6 @@
     visibility: hidden;
     min-width: 250px;
     margin-left: -125px;
-    background-color: lightgrey;
     color: black;
     text-align: center;
     border-radius: 2px;
@@ -38,4 +37,12 @@
 @keyframes fadeout {
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
+}
+
+.success {
+    background-color: lightgreen;
+}
+
+.faliure {
+    background-color: indianred;
 }

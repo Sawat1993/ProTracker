@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AsyncHttpService } from "../provider/async-http.service";
+import { NotificationService } from "../provider/notification";
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,10 +10,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  firstName: string = '';
+  lastName: string = '';
   email: string = '';
   password: string = '';
+  request: string = 'login';
 
-  constructor(private service: AsyncHttpService, private router: Router) { }
+  constructor(private service: AsyncHttpService, private router: Router, private notification: NotificationService) { }
 
   ngOnInit() {
   }
@@ -24,6 +28,15 @@ export class LoginComponent implements OnInit {
         location.href = './projects';
       }
     })
+  }
+
+  register() {
+    this.notification.updateNotification({
+    show: true,
+    status: '500',
+    message: 'Server is not ready'
+  })
+    this.request = 'register';
   }
 
 }

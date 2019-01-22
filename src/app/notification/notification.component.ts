@@ -14,14 +14,14 @@ export class NotificationComponent implements OnInit {
   constructor(private notification: NotificationService) { }
 
   ngOnInit() {
-    // this.notification.getNotification().subscribe((data) => {
-    //   this.show = data.show;
-    //   this.status = data.status;
-    //   this.message = data.message;
-    //   setTimeout(() => {
-    //     this.show = false;
-    //   }, 2000);
-    // })
+    this.notification.getNotification().subscribe((data) => {
+      this.show = data.show;
+      this.status = data.status;
+      this.message = data.message;
+      setTimeout(() => {
+        this.show = false;
+      }, 2000);
+    })
 
   }
 

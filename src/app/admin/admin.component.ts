@@ -26,6 +26,10 @@ export class AdminComponent implements OnInit {
   selectApproval() {
     this.selected = 'APPROVAL'
   }
+
+  selectConfig(){
+    this.selected = 'CONFIG'
+  }
   
   filter(e) {
     this.selected = e.event;

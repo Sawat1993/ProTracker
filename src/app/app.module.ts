@@ -26,11 +26,13 @@ import { ProjectsComponent } from './projects/projects.component';
 import { PurchaseOrdersComponent } from './purchase-orders/purchase-orders.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { LoginComponent } from './login/login.component';
+import { NotificationComponent } from './notification/notification.component'
 import { ProjectCodeComponent } from './project-code/project-code.component';
 import { ProjectCodesComponent } from './project-codes/project-codes.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { ApprovalComponent } from './approval/approval.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'projects', component: ProjectsComponent },
@@ -57,6 +59,7 @@ const routes: Routes = [
     AdminComponent,
     MasterProjectComponent,
     InvoiceComponent,
+    NotificationComponent,
     PurchaseOrderComponent,
     ProjectsComponent,
     PurchaseOrdersComponent,
@@ -66,7 +69,8 @@ const routes: Routes = [
     ProjectCodesComponent,
     UsersComponent,
     UserComponent,
-    ApprovalComponent
+    ApprovalComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,
