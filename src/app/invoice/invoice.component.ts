@@ -48,8 +48,7 @@ export class InvoiceComponent implements OnInit {
 
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      if (params.id) {
+      if (this.inID) {
         this.service.get('/assets/data/project.json').subscribe(data => {
           this.title = "Edit Invoice"
           this.invoice = data;
@@ -68,7 +67,7 @@ export class InvoiceComponent implements OnInit {
         };
         this.invoices.push(referer);
       }
-    })
+  
   }
 
   addRow() {

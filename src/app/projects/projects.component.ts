@@ -16,6 +16,10 @@ export class ProjectsComponent implements OnInit {
   page = 1;
   size = 10;
   count: number;
+  sort = {
+    field: 'name',
+    order: 'desc'
+  }
 
   constructor(private service: AsyncHttpService, private router: Router) { }
 
@@ -76,6 +80,16 @@ export class ProjectsComponent implements OnInit {
       this.page = 1;
       this.getProjects();
     }
+  }
+
+  sortTable(field) {
+    if (field == this.sort.field) {
+      if (this.sort.order == 'asc') { this.sort.order = 'desc' } else { this.sort.order = 'asc' }
+    } else {
+      this.sort.field = field;
+      this.sort.order = 'asc';
+    }
+    this.getProjects();
   }
 
 

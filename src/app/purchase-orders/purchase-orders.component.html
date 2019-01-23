@@ -4,8 +4,8 @@
         <div class="row col-12 m-0 p-0  justify-content-between">
           <div>
             <span style="font-weight: bold">Search:</span>
-            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="PO Code" type="text"></span>
-            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="PO Name" type="text"></span>
+            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="PO Number" type="text"></span>
+            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Created By" type="text"></span>
           </div>
           <div><button type="button" class="btn btn-success btn-sm" (click)="createPO()">Create PO</button></div>
         </div>
@@ -15,12 +15,11 @@
         <table class="table table-striped shadow-sm">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">NAME</th>
-              <th scope="col">STATUS</th>
-              <th scope="col">START DATE</th>
-              <th scope="col">END DATE</th>
-              <th scope="col">AMOUNT</th>
+              <th scope="col">PO NUMBER</th>
+              <th scope="col">CREATED BY</th>
+              <th scope="col">CREATED ON</th>
+              <th scope="col">TOTAL LINES</th>
+              <th scope="col">TOTAL AMOUNT</th>
               <th scope="col">EDIT</th>
             </tr>
           </thead>
@@ -28,9 +27,8 @@
             <tr *ngFor="let project of projects">
               <th>{{project.id}}</th>
               <td>{{project.name}}</td>
-              <td>{{project.status}}</td>
               <td>{{project.startDate}}</td>
-              <td>{{project.endDate}}</td>
+              <td>{{project.status}}</td>
               <td>$ {{project.amountBilled}}</td>
               <td><span (click)="editPO(project.id)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
             </tr>

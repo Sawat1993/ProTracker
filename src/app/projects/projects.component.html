@@ -6,6 +6,8 @@
         <span style="font-weight: bold">Search:</span>
         <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Project Code" type="text" [(ngModel)]="code" (keydown)="keyDown($event)"></span>
         <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Project Name" type="text" [(ngModel)]="name" (keydown)="keyDown($event)"></span>
+        <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Status" type="text"></span>
+        <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="PM ID" type="text"></span>
       </div>
       <div><button type="button" class="btn btn-success btn-sm" (click)="createProject()">Create Project</button></div>
     </div>
@@ -15,12 +17,12 @@
     <table class="table table-striped shadow-sm">
       <thead>
         <tr>
-          <th scope="col">NAME</th>
-          <th scope="col">STATUS</th>
-          <th scope="col">MANAGER ID</th>
-          <th scope="col">START DATE</th>
-          <th scope="col">END DATE</th>
-          <th scope="col">AMOUNT BILLED</th>
+          <th scope="col" (click)="sortTable('name')">NAME<span (click)="editProject(project.id)" class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='name' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
+          <th scope="col" (click)="sortTable('status')">STATUS<span (click)="editProject(project.id)" class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='status' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
+          <th scope="col" (click)="sortTable('pmID')">PM ID<span (click)="editProject(project.id)" class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='pmID' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
+          <th scope="col" (click)="sortTable('startDate')">START DATE<span (click)="editProject(project.id)" class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='startDate' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
+          <th scope="col" (click)="sortTable('endDate')">END DATE<span (click)="editProject(project.id)" class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='endDate' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
+          <th scope="col" (click)="sortTable('amount')">AMOUNT BILLED<span (click)="editProject(project.id)" class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='amount' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
           <th scope="col">EDIT</th>
         </tr>
       </thead>

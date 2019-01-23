@@ -4,8 +4,8 @@
         <div class="row col-12 m-0 p-0  justify-content-between">
           <div>
             <span style="font-weight: bold">Search:</span>
-            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Invoice Code" type="text"></span>
-            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Invoice Name" type="text"></span>
+            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Code" type="text"></span>
+            <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Status" type="text"></span>
           </div>
           <div><button type="button" class="btn btn-success btn-sm" (click)="createPO()">Create Invoice</button></div>
         </div>
@@ -15,23 +15,17 @@
         <table class="table table-striped shadow-sm">
           <thead>
             <tr>
-              <th scope="col">ID</th>
-              <th scope="col">NAME</th>
+              <th scope="col">PROJECT CODE</th>
               <th scope="col">STATUS</th>
-              <th scope="col">START DATE</th>
-              <th scope="col">END DATE</th>
-              <th scope="col">AMOUNT</th>
+              <th scope="col">CREATED BY</th>
               <th scope="col">EDIT</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let project of projects">
               <th>{{project.id}}</th>
-              <td>{{project.name}}</td>
               <td>{{project.status}}</td>
-              <td>{{project.startDate}}</td>
               <td>{{project.endDate}}</td>
-              <td>$ {{project.amountBilled}}</td>
               <td><span (click)="editPO(project.id)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
             </tr>
           </tbody>
