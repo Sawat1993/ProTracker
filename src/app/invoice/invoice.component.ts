@@ -11,6 +11,7 @@ export class InvoiceComponent implements OnInit {
 
   @Input() inID: any;
   title = 'Create Invoice';
+  arrayOfFormatStrings = [];
   invoices = []
   invoice: any = {
     id: '',
@@ -18,6 +19,8 @@ export class InvoiceComponent implements OnInit {
     monthYear: '',
     poNumber: '',
     amount: '',
+    invoiceQty: 0,
+    rate: 0,
     startDate: '',
     endDate: ''
   };
@@ -48,7 +51,8 @@ export class InvoiceComponent implements OnInit {
 
 
   ngOnInit() {
-      if (this.inID) {
+    this.activatedRoute.params.subscribe(params => {
+      if (params.id) {
         this.service.get('/assets/data/project.json').subscribe(data => {
           this.title = "Edit Invoice"
           this.invoice = data;
@@ -60,6 +64,8 @@ export class InvoiceComponent implements OnInit {
           monthYear: '',
           poNumber: '',
           amount: '',
+          invoiceQty: 0,
+          rate: 0,
           startDate: '',
           endDate: '',
           metaIndex: 1,
@@ -67,19 +73,29 @@ export class InvoiceComponent implements OnInit {
         };
         this.invoices.push(referer);
       }
-  
+    })
+  }
+
+  captureSelectedData(selectedData: any, changeOnIndex?: number) {
+    if (!changeOnIndex) {
+      let str_var = "Invoice Line# " + selectedData.metaIndex + ", Rate: " + selectedData.rate + ", Qty: " + selectedData.invoiceQty
+        + ", Amt: $" + (selectedData.rate * selectedData.invoiceQty) + "";
+      this.arrayOfFormatStrings.push(str_var);
+    }
   }
 
   addRow() {
     console.log(this.invoices);
     if (this.invoices.length > 0) {
-      if (this.invoices[this.invoices.length - 1].amount != '' && this.invoices[this.invoices.length - 1].monthYear != '') {
+      if (1) {
         const referer = {
           id: '',
           projectCode: '',
           monthYear: '',
           poNumber: '',
           amount: '',
+          invoiceQty: 0,
+          rate: 0,
           startDate: '',
           endDate: '',
           metaIndex: '',
@@ -97,6 +113,8 @@ export class InvoiceComponent implements OnInit {
         monthYear: '',
         poNumber: '',
         amount: '',
+        invoiceQty: 0,
+        rate: 0,
         startDate: '',
         endDate: '',
         metaIndex: 1,
@@ -124,13 +142,21 @@ export class InvoiceComponent implements OnInit {
   // }
 
   deleteInvoice(type, metaIndex?: any, ) {
-    if (type === 'Create Invoice') {
+    let indexOfDeletion = null;
+    if (confirm("Do You want to proceed with deletion?")) {
       this.invoices.forEach((val, index) => {
+         console.log("meta Indices", val.metaIndex);
         if (val.metaIndex == metaIndex) {
           this.invoices.splice(index, 1);
+          this.arrayOfFormatStrings = [];
           console.log(this.invoices);
         }
-      })
+      });
+      this.invoices.forEach((invoice, index) => {
+        let str_var = "Invoice Line# " + (index + 1) + ", Rate: " + invoice.rate + ", Qty: " + invoice.invoiceQty
+          + ", Amt: $" + (invoice.rate * invoice.invoiceQty) + "";
+        this.arrayOfFormatStrings.push(str_var);
+      });
     }
   }
 

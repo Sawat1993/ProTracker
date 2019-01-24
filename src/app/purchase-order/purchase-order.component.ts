@@ -8,6 +8,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./purchase-order.component.css']
 })
 export class PurchaseOrderComponent implements OnInit {
+  arrayOfFormatStrings = [];
 
   title = 'Create PO';
   @Input() poID: any;
@@ -15,9 +16,10 @@ export class PurchaseOrderComponent implements OnInit {
   po: any = {
     qty: '',
     lineNumber: '',
+    poNumber: '',
     lineDesc: '',
     rate: '',
-    totalAmount: '',
+    totalAmount: 0,
     poAmt: ''
   };
 
@@ -26,23 +28,25 @@ export class PurchaseOrderComponent implements OnInit {
 
 
   ngOnInit() {
-      if (this.poID) {
-        this.service.get('/assets/data/project.json').subscribe(data => {
-          this.title = "Edit PO"
-          this.po = data;
-        });
-      } else {
-        const referer = {
-          qty: '',
-          lineNumber: '',
-          lineDesc: '',
-          rate: '',
-          poAmt: '',
-          metaIndex: 1,
-          isEditable: true
-        };
-        this.pos.push(referer);
-      }
+    if (this.poID) {
+      this.service.get('/assets/data/project.json').subscribe(data => {
+        this.title = "Edit PO"
+        this.po = data;
+      });
+    } else {
+      const referer = {
+        qty: '',
+        lineNumber: '',
+        poNumber: '',
+        lineDesc: '',
+        rate: '',
+        poAmt: '',
+
+        metaIndex: 1,
+        isEditable: true
+      };
+      this.pos.push(referer);
+    }
   }
 
   addRow() {
@@ -52,8 +56,10 @@ export class PurchaseOrderComponent implements OnInit {
         const referer = {
           qty: '',
           lineNumber: '',
+          poNumber: '',
           lineDesc: '',
           rate: '',
+
           poAmt: '',
           metaIndex: '',
           isEditable: true
@@ -66,6 +72,7 @@ export class PurchaseOrderComponent implements OnInit {
       const referer = {
         qty: '',
         lineNumber: '',
+        poNumber: '',
         lineDesc: '',
         rate: '',
         poAmt: '',
@@ -91,16 +98,40 @@ export class PurchaseOrderComponent implements OnInit {
   setValue(ref) {
 
     ref.poAmt = ref.rate * ref.qty;
+    if (ref.poAmt) {
+      this.po.totalAmount = 0;
+      this.pos.forEach(po => {
+        
+        this.po.totalAmount += po.poAmt;
+      });
+    }
+  }
+
+   captureSelectedData(selectedData: any, changeOnIndex?: number) {
+    if (!changeOnIndex) {
+      let str_var = "PO Line# " + selectedData.metaIndex + ", Rate: " + selectedData.rate + ", Qty: " + selectedData.qty
+        + ", Amt: $" + (selectedData.rate * selectedData.qty) + "";
+      this.arrayOfFormatStrings.push(str_var);
+    }
   }
 
   deletePo(type, metaIndex?: any, ) {
-    if (type === 'Create PO') {
+    if (confirm("Do You want to proceed with deletion?")) {
       this.pos.forEach((val, index) => {
         if (val.metaIndex == metaIndex) {
           this.pos.splice(index, 1);
+          this.po.totalAmount -= val.poAmt;
+          this.arrayOfFormatStrings = [];
           console.log(this.pos);
         }
+      });
+
+      this.pos.forEach((po, index) => {
+        let str_var = "PO Line# " + (index + 1) + ", Rate: " + po.rate + ", Qty: " + po.qty
+          + ", Amt: $" + (po.rate * po.qty) + "";
+        this.arrayOfFormatStrings.push(str_var);
       })
+
     }
   }
 
