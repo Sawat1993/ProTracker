@@ -11,6 +11,10 @@ export class ProjectComponent implements OnInit {
 
   @Input() title: any = 'Create Project';
   @Input() projectID: any;
+  projectCode = {
+    selectedCode: '',
+    codes: [1, 2, 3, 4, 5, 'sjkbjdbskj', 'siwjhew']
+  }
   projectDetail: any = {
     name: '',
     managerID: '',
@@ -24,9 +28,11 @@ export class ProjectComponent implements OnInit {
 
 
   ngOnInit() {
-    this.service.get('/assets/data/project.json').subscribe(data => {
-      this.projectDetail = data;
-    })
+    if (this.projectID) {
+      this.service.get('/assets/data/project.json').subscribe(data => {
+        this.projectDetail = data;
+      })
+    }
   }
 
   save() {

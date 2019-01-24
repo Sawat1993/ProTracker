@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProjectCodeComponent implements OnInit {
 
   @Input() pcID: any;
+
+
   constructor() { }
 
   ngOnInit() {
