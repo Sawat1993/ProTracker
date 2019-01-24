@@ -95,7 +95,7 @@
         <button type="button" class="btn btn-success" (click)="save()">{{title}}</button>
         <!--<button type="button" class="btn btn-danger ml-3">Cancel</button>-->
       </div>
-      <div *ngIf="arrayOfFormatStrings.length != 0" class="row col-12 m-0 p-0 form-group alert alert-success" role="alert">
+      <div *ngIf="arrayOfFormatStrings.length != 0" class="row col-12 m-0 p-0 mt-2 form-group alert alert-success" role="alert">
         <span class="lable"><b>Invoice Text :&nbsp;</b> </span>
         <p *ngFor="let strings of arrayOfFormatStrings">{{strings}} &nbsp;&nbsp;</p>
       </div>
