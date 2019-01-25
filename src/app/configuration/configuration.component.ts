@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfigurationComponent implements OnInit {
 
-  selection = 'PROJECT CODE';
+  selection = 'Project Code';
   constructor() { }
 
   ngOnInit() {

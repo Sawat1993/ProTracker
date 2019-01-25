@@ -4,7 +4,6 @@
     <div class="row col-12 m-0 p-0  justify-content-between">
       <div>
         <span style="font-weight: bold">Search:</span>
-        <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Project Code" type="text" [(ngModel)]="code" (keydown)="keyDown($event)"></span>
         <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Project Name" type="text" [(ngModel)]="name" (keydown)="keyDown($event)"></span>
         <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="Status" type="text"></span>
         <span class="m-2 p-1 rounded border"><input class=" m-1 searchbox" placeholder="PM ID" type="text"></span>
@@ -22,8 +21,7 @@
           <th scope="col" (click)="sortTable('pmID')">PM ID<span class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='pmID' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
           <th scope="col" (click)="sortTable('startDate')">START DATE<span class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='startDate' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
           <th scope="col" (click)="sortTable('endDate')">END DATE<span class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='endDate' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
-          <th scope="col" (click)="sortTable('amount')">AMOUNT BILLED<span class="fa pl-2 pr-2 hand" [ngClass]="(sort.field =='amount' ? sort.order == 'asc' ? 'fa-arrow-down' : 'fa-arrow-up' : 'fa-arrow-down light')"></span></th>
-          <th scope="col">EDIT</th>
+          <th scope="col">ACTION</th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +31,6 @@
           <td>{{project.managerID}}</td>
           <td>{{project.startDate}}</td>
           <td>{{project.endDate}}</td>
-          <td>$ {{project.amountBilled}}</td>
           <td><span (click)="editProject(project.id)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
           <!--<td><span (click)="viewProject(project.id,project.name)" class="fa fa-arrow-right pl-2 pr-2 hand"></span></td>-->
         </tr>

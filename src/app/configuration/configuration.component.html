@@ -5,25 +5,27 @@
       <div class="form-group ml-2" style="display: -webkit-box;">
         <div class="lable" style="margin-top: 5px;">ADD NEW : </div>
         <select class="form-control ml-2" name="projectCode" style="width: 200px;" [(ngModel)]="selection">
-            <option>PROJECT CODE</option>
-            <option>TEST</option>
+            <option>Project Code</option>
+            <option>Location</option>
+            <option>Project Status</option>
           </select>
       </div>
-      <div class="col-12" *ngIf="selection == 'PROJECT CODE'">
+      <div class="col-12">
         <div class="row m-0 p-0">
           <div class="form-group">
-            <span class="lable">Enter Project Code :   </span>
-            <input type="text" required class="form-control" placeholder="Code *" name="Code" style="width: 300px;" />
+            <span class="lable">Enter {{selection}} :   </span>
+            <input type="text" required class="form-control" placeholder={{selection}} name="Code" style="width: 300px;" />
           </div>
           <div class="form-group ml-5">
-            <span class="lable">Description :   </span>
-            <textarea class="form-control" placeholder="Project Description" style="width: 400px; height: 118px;" name="ProjectDesc" [(ngModel)]="projectDetail.description"></textarea>
+            <span class="lable">{{selection}} Description :   </span>
+            <textarea class="form-control" placeholder="Description" style="width: 400px; height: 118px;" name="ProjectDesc"
+              [(ngModel)]="description"></textarea>
           </div>
         </div>
       </div>
 
       <div class="row col-12 mt-5 justify-content-center">
-        <button type="button" class="btn btn-success" (click)="save()">Create</button>
+        <button type="button" class="btn btn-success" (click)="save()">Create {{selection}}</button>
         <!--<button type="button" class="btn btn-danger ml-3">Cancel</button>-->
       </div>
     </div>

@@ -72,6 +72,11 @@ export class ProjectsComponent implements OnInit {
       this.projects = data.projects;
       this.count = data.count;
     })
+
+    this.service.get('/API/assets/data/projects.json', option).subscribe(data => {
+      this.projects = data.projects;
+      this.count = data.count;
+    })
   }
 
 
