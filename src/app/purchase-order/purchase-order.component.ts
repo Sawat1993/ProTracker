@@ -8,9 +8,9 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./purchase-order.component.css']
 })
 export class PurchaseOrderComponent implements OnInit {
-  arrayOfFormatStrings = [];
 
   title = 'Create PO';
+  lineNosNotAllowed = [];
   @Input() poID: any;
   pos = [];
   po: any = {
@@ -96,6 +96,13 @@ export class PurchaseOrderComponent implements OnInit {
   }
 
   setValue(ref) {
+    
+    this.pos.forEach(objects => {
+      if (objects.lineNumber == ref.lineNumber && objects.metaIndex != ref.metaIndex) {
+        alert("Line Numbers can't be equal!");
+        ref.lineNumber = null;
+      }
+    });
 
     ref.poAmt = ref.rate * ref.qty;
     if (ref.poAmt) {
@@ -107,13 +114,6 @@ export class PurchaseOrderComponent implements OnInit {
     }
   }
 
-   captureSelectedData(selectedData: any, changeOnIndex?: number) {
-    if (!changeOnIndex) {
-      let str_var = "PO Line# " + selectedData.metaIndex + ", Rate: " + selectedData.rate + ", Qty: " + selectedData.qty
-        + ", Amt: $" + (selectedData.rate * selectedData.qty) + "";
-      this.arrayOfFormatStrings.push(str_var);
-    }
-  }
 
   deletePo(type, metaIndex?: any, ) {
     if (confirm("Do You want to proceed with deletion?")) {
@@ -121,16 +121,9 @@ export class PurchaseOrderComponent implements OnInit {
         if (val.metaIndex == metaIndex) {
           this.pos.splice(index, 1);
           this.po.totalAmount -= val.poAmt;
-          this.arrayOfFormatStrings = [];
           console.log(this.pos);
         }
       });
-
-      this.pos.forEach((po, index) => {
-        let str_var = "PO Line# " + (index + 1) + ", Rate: " + po.rate + ", Qty: " + po.qty
-          + ", Amt: $" + (po.rate * po.qty) + "";
-        this.arrayOfFormatStrings.push(str_var);
-      })
 
     }
   }

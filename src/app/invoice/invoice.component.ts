@@ -122,6 +122,8 @@ export class InvoiceComponent implements OnInit {
       };
       this.invoices.push(referer);
     }
+
+    this.captureSelectedData(this.invoices[this.invoices.length - 1]);
   }
 
   save() {
@@ -142,20 +144,12 @@ export class InvoiceComponent implements OnInit {
   // }
 
   deleteInvoice(type, metaIndex?: any, ) {
-    let indexOfDeletion = null;
     if (confirm("Do You want to proceed with deletion?")) {
       this.invoices.forEach((val, index) => {
-         console.log("meta Indices", val.metaIndex);
         if (val.metaIndex == metaIndex) {
           this.invoices.splice(index, 1);
-          this.arrayOfFormatStrings = [];
           console.log(this.invoices);
         }
-      });
-      this.invoices.forEach((invoice, index) => {
-        let str_var = "Invoice Line# " + (index + 1) + ", Rate: " + invoice.rate + ", Qty: " + invoice.invoiceQty
-          + ", Amt: $" + (invoice.rate * invoice.invoiceQty) + "";
-        this.arrayOfFormatStrings.push(str_var);
       });
     }
   }
