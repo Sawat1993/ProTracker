@@ -34,7 +34,7 @@
         <fieldset *ngIf="request == 'register' || request == 'forgot'">
           <h2>Please Submit Details</h2>
           <hr class="colorgraph">
-          <div class="form-group">
+          <div class="form-group" >
             <input type="text" name="firstName" id="firstName" [(ngModel)]="firstName" class="form-control input-lg" placeholder="Enter First Name">
           </div>
           <div class="form-group">
@@ -50,10 +50,10 @@
           <hr class="colorgraph">
           <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
-              <input type="submit" class="btn btn-lg btn-success btn-block" (click)="register()" value="Submit Detail">
+              <input type="submit" class="btn btn-lg btn-success btn-block" (click)="register()" value="Submit Detail" [disabled]="!userLogin.valid">
             </div>
             <div class="col-xs-6 col-sm-6 col-md-6">
-             <input type="submit" class="btn btn-lg btn-primary btn-block" (click)="request='login'" value="Go To Login">
+             <input type="submit" class="btn btn-lg btn-primary btn-block" (click)="request='login'" value="Go To Login" [disabled]="!userLogin.valid">
             </div>
           </div>
         </fieldset>

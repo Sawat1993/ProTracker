@@ -18,7 +18,7 @@ export class ProjectsComponent implements OnInit {
   count: number;
   sort = {
     field: 'name',
-    order: 'desc'
+    order: 'asc'
   }
 
   constructor(private service: AsyncHttpService, private router: Router) { }
@@ -63,19 +63,13 @@ export class ProjectsComponent implements OnInit {
   getProjects() {
     const option = {
       params: new HttpParams()
-        .set('page', this.page.toString())
+        .set('page', (this.page - 1).toString())
         .set('size', this.size.toString())
-        .set('code', this.code.toString())
-        .set('name', this.name.toString())
     }
-    this.service.get('/assets/data/projects.json', option).subscribe(data => {
-      this.projects = data.projects;
-      this.count = data.count;
-    })
-
-    this.service.get('/API/assets/data/projects.json', option).subscribe(data => {
-      this.projects = data.projects;
-      this.count = data.count;
+    this.service.get('http://192.168.216.48:8080/protracker/app/api/projects', option).subscribe(data => {
+      this.projects = data.content;
+      console.log(this.projects)
+      this.count = Math.ceil( data.totalElements / this.size);
     })
   }
 

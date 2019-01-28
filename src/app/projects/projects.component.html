@@ -26,9 +26,10 @@
       </thead>
       <tbody>
         <tr *ngFor="let project of projects">
-          <td>{{project.name}}</td>
+
+          <td>{{project.projectName}}</td>
           <td>{{project.status}}</td>
-          <td>{{project.managerID}}</td>
+          <td>{{project.managerEmail}}</td>
           <td>{{project.startDate}}</td>
           <td>{{project.endDate}}</td>
           <td><span (click)="editProject(project.id)" class="fa fa-pencil pl-2 pr-2 hand"></span></td>
