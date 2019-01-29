@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap, finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { NotificationService } from "../provider/notification";
 
 //Services
 import { LoaderService } from './loader';
@@ -13,7 +14,7 @@ import { LoaderService } from './loader';
 })
 export class AsyncHttpService {
 
-  constructor(private httpClient: HttpClient, private loader: LoaderService) { }
+  constructor(private httpClient: HttpClient, private loader: LoaderService, private notification: NotificationService) { }
 
   get(url: string, options?: Object): Observable<any> {
     this.loader.updateLoader(true);

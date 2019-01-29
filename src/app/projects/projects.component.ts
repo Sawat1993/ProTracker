@@ -10,15 +10,16 @@ import { HttpParams } from '@angular/common/http';
 })
 export class ProjectsComponent implements OnInit {
 
-  projects: any;
+  projects: any = [];
   name: string = '';
-  code: string = '';
+  managerEmail: string = '';
+  status: string = '';
   page = 1;
   size = 10;
-  count: number;
+  count: number = 1;
   sort = {
-    field: 'name',
-    order: 'asc'
+    field: 'projectName',
+    order: 'ASC'
   }
 
   constructor(private service: AsyncHttpService, private router: Router) { }
@@ -65,10 +66,13 @@ export class ProjectsComponent implements OnInit {
       params: new HttpParams()
         .set('page', (this.page - 1).toString())
         .set('size', this.size.toString())
+        .set('projectName', this.name.toString())
+        .set('managerEmail', this.managerEmail.toString())
+        .set('status', this.status.toString())
+        .set('sort', this.sort.field.toString() + ',' + this.sort.order.toString())
     }
     this.service.get('http://192.168.216.48:8080/protracker/app/api/projects', option).subscribe(data => {
       this.projects = data.content;
-      console.log(this.projects)
       this.count = Math.ceil( data.totalElements / this.size);
     })
   }
@@ -83,10 +87,10 @@ export class ProjectsComponent implements OnInit {
 
   sortTable(field) {
     if (field == this.sort.field) {
-      if (this.sort.order == 'asc') { this.sort.order = 'desc' } else { this.sort.order = 'asc' }
+      if (this.sort.order == 'ASC') { this.sort.order = 'DESC' } else { this.sort.order = 'ASC' }
     } else {
       this.sort.field = field;
-      this.sort.order = 'asc';
+      this.sort.order = 'ASC';
     }
     this.getProjects();
   }

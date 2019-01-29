@@ -24,13 +24,14 @@
         <div class="row m-0 p-0">
           <div class="form-group" style="display: -webkit-box;">
             <div class="lable" style="margin-top: 5px;">Project Type : </div>
-            <select class="form-control ml-2" name="projectCode" [(ngModel)]="projectCode.selctedCode" style="width: 200px;">
-            <option *ngFor="let code of projectCode.codes">{{code}}</option>
+            <select class="form-control ml-2" name="projectCode" [(ngModel)]="projectDetail.type" style="width: 200px;">
+            <option>FP</option>
+             <option>TNM</option>
           </select>
           </div>
           <div class="form-group ml-5" style="display: -webkit-box;">
             <div class="lable" style="margin-top: 5px;">STATUS : </div>
-            <select class="form-control ml-2" name="projectCode" [(ngModel)]="projectCode.selctedCode" style="width: 200px;">
+            <select class="form-control ml-2" name="projectCode" [(ngModel)]="projectDetail.status" style="width: 200px;">
             <option>ACTIVE</option>
             <option>INACTIVE</option>
           </select>
