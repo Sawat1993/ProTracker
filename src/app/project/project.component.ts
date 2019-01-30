@@ -29,7 +29,13 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     if (this.projectID) {
       this.service.get('http://192.168.216.48:8080/protracker/app/api/projects/' + this.projectID).subscribe(data => {
-        this.projectDetail = data;
+        this.projectDetail.name = data.projectName;
+        this.projectDetail.managerID = data.managerEmail;
+        this.projectDetail.startDate = data.startDate;
+        this.projectDetail.endDate = data.endDate;
+        this.projectDetail.description = data.description;
+        this.projectDetail.status = data.status;
+        //this.projectDetail.type = data.projectName;
         console.log(data);
       })
     }
@@ -50,7 +56,7 @@ export class ProjectComponent implements OnInit {
       }).subscribe(data => {
         this.notification.updateNotification({
           show: true,
-          status: data.responseCode ,
+          status: data.responseCode,
           message: data.responseCode == 200 ? 'Success' : 'Faliure'
         })
       })
